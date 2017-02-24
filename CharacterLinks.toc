@@ -1,0 +1,7 @@
+## Interface: 70100
+## Title: Character Links
+## Author: Iokanaan of Archimonde EU
+## Version: 0.1
+## Notes: Add a menu on character frames with links to Armory, Warcraft Logs, WarcraftHub and WoWProgress
+
+main.lua
