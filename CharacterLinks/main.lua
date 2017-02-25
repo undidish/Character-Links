@@ -60,9 +60,18 @@ local function ShowUrl(name,site)
 	end
 end
 
+local CURRENT_NAME, CURRENT_SERVER
+
+hooksecurefunc("UnitPopup_ShowMenu", function(self, which)
+    if which == "FRIEND" and UIDROPDOWNMENU_MENU_LEVEL == 1 then
+        CURRENT_NAME, CURRENT_SERVER = self.name, self.server
+    end
+end)
+
 hooksecurefunc("UnitPopup_OnClick", function(self)
 	local site
 	local name, realm = UIDROPDOWNMENU_INIT_MENU.name, UIDROPDOWNMENU_INIT_MENU.server
+	if name == CURRENT_NAME and not server then server = CURRENT_SERVER end
 	if self.value == "A" then
 		site = "armory"
 	elseif self.value == "WH" then
@@ -71,6 +80,7 @@ hooksecurefunc("UnitPopup_OnClick", function(self)
 		site = "warcraftlogs"
 	elseif self.value == "WP" then
 		site = "wowprogress"
+	else return;
 	end
 	if realm then
 		ShowUrl(name .. "-" .. realm,site)
