@@ -1,6 +1,6 @@
 -- Based on ArmoryQuickLink and WoWProgressLink
 
-UnitPopupButtons["CL"]={text = "Character Links", dist = 0, nested = 1,};
+UnitPopupButtons["CL"]={text = "Character Links", dist = 0, nested = 1, checkable = nil,};
 UnitPopupButtons["A"] = {text = "Armory", dist = 0, checkable = nil};
 UnitPopupButtons["WL"] = {text = "Warcraft Logs", dist = 0, checkable = nil};
 UnitPopupButtons["WH"] = {text = "WarcraftHub", dist = 0, checkable = nil};
@@ -63,7 +63,7 @@ end
 local CURRENT_NAME, CURRENT_SERVER
 
 hooksecurefunc("UnitPopup_ShowMenu", function(self, which)
-    if which == "FRIEND" and UIDROPDOWNMENU_MENU_LEVEL == 1 then
+    if which == "FRIEND" and UIDROPDOWNMENU_MENU_LEVEL == 2 then
         CURRENT_NAME, CURRENT_SERVER = self.name, self.server
     end
 end)
