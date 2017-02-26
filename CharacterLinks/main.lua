@@ -1,6 +1,6 @@
 -- Based on ArmoryQuickLink and WoWProgressLink
 
-UnitPopupButtons["CL"]={text = "Character Links", dist = 0, nested = 1, checkable = nil,};
+UnitPopupButtons["CL"]={text = "Character Links", dist = 0, nested = 1,};
 UnitPopupButtons["A"] = {text = "Armory", dist = 0, checkable = nil};
 UnitPopupButtons["WL"] = {text = "Warcraft Logs", dist = 0, checkable = nil};
 UnitPopupButtons["WH"] = {text = "WarcraftHub", dist = 0, checkable = nil};
@@ -62,16 +62,28 @@ end
 
 local CURRENT_NAME, CURRENT_SERVER
 
-hooksecurefunc("UnitPopup_ShowMenu", function(self, which)
-    if which == "FRIEND" and UIDROPDOWNMENU_MENU_LEVEL == 2 then
-        CURRENT_NAME, CURRENT_SERVER = self.name, self.server
-    end
+hooksecurefunc("UnitPopup_ShowMenu", function (dropdownMenu, which, unit, name, userData)
+	local server = nil;
+	if UIDROPDOWNMENU_MENU_LEVEL == 1 then
+		if ( unit ) then
+			name, server = UnitName(unit);
+		elseif ( name ) then
+			local n, s = strmatch(name, "^([^-]+)-(.*)");
+			if ( n ) then
+				name = n;
+				server = s;
+			end
+		end
+
+		CURRENT_NAME = name;
+		CURRENT_SERVER = server;
+	end
 end)
 
 hooksecurefunc("UnitPopup_OnClick", function(self)
 	local site
 	local name, realm = UIDROPDOWNMENU_INIT_MENU.name, UIDROPDOWNMENU_INIT_MENU.server
-	if name == CURRENT_NAME and not server then server = CURRENT_SERVER end
+	if name == CURRENT_NAME and not realm then realm = CURRENT_SERVER end
 	if self.value == "A" then
 		site = "armory"
 	elseif self.value == "WH" then
@@ -268,14 +280,14 @@ local LFG_LIST_APPLICANT_MEMBER_MENU = {
 				text = LFG_LIST_BAD_PLAYER_NAME,
 				notCheckable = true,
 				func = function(_, id, memberIdx) C_LFGList.ReportApplicant(id, "badplayername", memberIdx); end,
-				arg1 = nil, --Applicant ID goes here
-				arg2 = nil, --Applicant Member index goes here
+				arg1 = nil,
+				arg2 = nil,
 			},
 			{
 				text = LFG_LIST_BAD_DESCRIPTION,
 				notCheckable = true,
 				func = function(_, id) C_LFGList.ReportApplicant(id, "lfglistappcomment"); end,
-				arg1 = nil, --Applicant ID goes here
+				arg1 = nil,
 			},
 		},
 	},
@@ -283,9 +295,9 @@ local LFG_LIST_APPLICANT_MEMBER_MENU = {
 		text = IGNORE_PLAYER,
 		notCheckable = true,
 		func = function(_, name, applicantID) AddIgnore(name); C_LFGList.DeclineApplicant(applicantID); end,
-		arg1 = nil, --Player name goes here
-		arg2 = nil, --Applicant ID goes here
-		disabled = nil, --Disabled if we don't have a name yet
+		arg1 = nil,
+		arg2 = nil,
+		disabled = nil,
 	},
 	{
 		text = CANCEL,
