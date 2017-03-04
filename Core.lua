@@ -109,20 +109,22 @@ end
 
 local function buildLink(name,site)
   local char, server = string.match(name, "(.-)-(.*)")
-  server = FixRealmName(server)
   if not char then
     char = name
     server = GetRealmName()
   end
+  server = FixRealmName(server)
   server = string.gsub(server, "(%l)(%u)", "%1-%2")
-  server = string.gsub(server, "'", "-")
   server = string.gsub(server, " ", "-")
-  if server == "" then
+  serverArmory = server
+  server = string.gsub(server, "'", "-")
+  server = string.gsub(server, "’", "-")
+  if server == nil then
     DEFAULT_CHAT_FRAME:AddMessage("|CFFCC33FFCharacter Links|r: ".."Out of range!");
   else
     local region = getRegion()
     if site == "armory" then
-      url = "https://" .. region .. ".battle.net/wow/en/character/" .. server .. "/" .. char .. "/advanced"
+      url = "https://" .. region .. ".battle.net/wow/en/character/" .. serverArmory .. "/" .. char .. "/advanced"
     elseif site == "warcrafthub" then
       url = "https://www.warcraftparser.com/character/" .. region .. "/" .. server .. "/" .. char .. "/"
     elseif site == "warcraftlogs" then
