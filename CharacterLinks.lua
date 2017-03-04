@@ -66,28 +66,9 @@ end
 
 local CURRENT_NAME, CURRENT_SERVER
 
-hooksecurefunc("UnitPopup_ShowMenu", function (dropdownMenu, which, unit, name, userData)
-    local server = nil
-    if UIDROPDOWNMENU_MENU_LEVEL == 1 then
-      if ( unit ) then
-        name, server = UnitName(unit)
-      elseif ( name ) then
-        local n, s = strmatch(name, "^([^-]+)-(.*)")
-        if ( n ) then
-          name = n
-          server = s
-        end
-      end
-
-      CURRENT_NAME = name
-      CURRENT_SERVER = server
-    end
-  end)
-
 hooksecurefunc("UnitPopup_OnClick", function(self)
-    local site
     local name, realm = UIDROPDOWNMENU_INIT_MENU.name, UIDROPDOWNMENU_INIT_MENU.server
-    if name == CURRENT_NAME and not realm then realm = CURRENT_SERVER end
+    local site
     if self.value == "A" then
       site = "armory"
     elseif self.value == "WH" then
@@ -96,7 +77,7 @@ hooksecurefunc("UnitPopup_OnClick", function(self)
       site = "warcraftlogs"
     elseif self.value == "WP" then
       site = "wowprogress"
-    else return;
+    else return
     end
     if realm then
       ShowUrl(name .. "-" .. realm,site)

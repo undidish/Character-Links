@@ -9,3 +9,4 @@
 1.8-beta : handle composite server name
 1.9-beta : fix armory links for servers with a '
 1.10-beta : handle composite russian server name
+1.11-beta : code cleanup
