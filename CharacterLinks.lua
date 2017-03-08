@@ -30,6 +30,7 @@ local function buildLink(name,site)
     server = GetRealmName()
   end
   server = FixRealmName(server)
+  serverMythicPlusHelper = server
   server = string.gsub(server, "(%l)(%u)", "%1-%2")
   server = string.gsub(server, " ", "-")
   serverArmory = server
@@ -42,10 +43,21 @@ local function buildLink(name,site)
     DEFAULT_CHAT_FRAME:AddMessage("|CFFCC33FFCharacter Links|r: ".."Out of range!");
   else
     local region = getRegion()
+    local url = ""
+    local role = UnitGroupRolesAssigned(char)
     if site == "armory" then
       url = "https://" .. region .. ".battle.net/wow/en/character/" .. serverArmory .. "/" .. char .. "/advanced"
     elseif site == "mythicplusshelper" then
-      url = "https://www.warcraftlogs.com/rankings/character_name/" .. char .. "/" .. serverWarcraftLogs .. "/" .. region
+      url = "{\"region\": \"" .. region .. "\"},\n"
+      if IsInRaid() == true then
+        url = url .. "{\"groupType\":\"raid\"},\n"
+      else
+        url = url .. "{\"groupType\":\"dungeon\"},\n"
+      end
+      url = url .. "{\"character\": \"" .. char .. "\","
+      url = url .. "\"server\": \"" .. FixRealmName(serverMythicPlusHelper) .. "\","
+      url = url .. "\"playerType\": \"groupMember\","
+      url = url .. "\"role\": \"" .. role .. "\"}\n"
     elseif site == "warcrafthub" then
       url = "https://www.warcraftparser.com/character/" .. region .. "/" .. server .. "/" .. char .. "/"
     elseif site == "warcraftlogs" then
@@ -74,7 +86,7 @@ local CURRENT_NAME, CURRENT_SERVER
 
 hooksecurefunc("UnitPopup_ShowMenu", function (dropdownMenu, which, unit, name, userData)
     local server = nil;
-    if UIDROPDOWNMENU_MENU_LEVEL == 1 then
+    if UIDROPDOWNMENU_MENU_LEVEL == 2 then
       if ( unit ) then
         name, server = UnitName(unit);
       elseif ( name ) then
