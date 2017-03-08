@@ -2,6 +2,7 @@
 
 UnitPopupButtons["CL"]={text = "Character Links", dist = 0, nested = 1,}
 UnitPopupButtons["A"] = {text = "Armory", dist = 0, checkable = nil}
+UnitPopupButtons["MHP"] = {text = "Mythic Plus Helper", dist = 0, checkable = nil}
 UnitPopupButtons["WL"] = {text = "Warcraft Logs", dist = 0, checkable = nil}
 UnitPopupButtons["WH"] = {text = "WarcraftHub", dist = 0, checkable = nil}
 UnitPopupButtons["WP"] = {text = "WoWProgress", dist = 0, checkable = nil}
@@ -14,7 +15,7 @@ table.insert(UnitPopupMenus["GUILD_OFFLINE"], #(UnitPopupMenus["GUILD_OFFLINE"])
 table.insert(UnitPopupMenus["FRIEND"], #(UnitPopupMenus["FRIEND"])-1, "CL")
 table.insert(UnitPopupMenus["FRIEND_OFFLINE"], #(UnitPopupMenus["FRIEND_OFFLINE"])-1, "CL")
 table.insert(UnitPopupMenus["CHAT_ROSTER"], #(UnitPopupMenus["CHAT_ROSTER"])-1, "CL")
-UnitPopupMenus["CL"] = {"A", "WH", "WL", "WP"};
+UnitPopupMenus["CL"] = {"A", "MHP", "WH", "WL", "WP"};
 
 local function getRegion()
   local regionLabel = {"us", "kr", "eu", "tw", "cn"}
@@ -32,16 +33,19 @@ local function buildLink(name,site)
   server = string.gsub(server, "(%l)(%u)", "%1-%2")
   server = string.gsub(server, " ", "-")
   serverArmory = server
+  serverWarcraftLogs = server
   server = string.gsub(server, "'", "-")
   server = string.gsub(server, "’", "-")
-  serverWarcraftLogs = server
-  serverWarcraftLogs = string.gsub(serverWarcraftLogs, "-", "")
+  serverWarcraftLogs = string.gsub(serverWarcraftLogs, "'", "")
+  serverWarcraftLogs = string.gsub(serverWarcraftLogs, "’", "")
   if server == nil then
     DEFAULT_CHAT_FRAME:AddMessage("|CFFCC33FFCharacter Links|r: ".."Out of range!");
   else
     local region = getRegion()
     if site == "armory" then
       url = "https://" .. region .. ".battle.net/wow/en/character/" .. serverArmory .. "/" .. char .. "/advanced"
+    elseif site == "mythicplusshelper" then
+      url = "https://www.warcraftlogs.com/rankings/character_name/" .. char .. "/" .. serverWarcraftLogs .. "/" .. region
     elseif site == "warcrafthub" then
       url = "https://www.warcraftparser.com/character/" .. region .. "/" .. server .. "/" .. char .. "/"
     elseif site == "warcraftlogs" then
@@ -92,6 +96,8 @@ hooksecurefunc("UnitPopup_OnClick", function(self)
     if name == CURRENT_NAME and not realm then realm = CURRENT_SERVER end
     if self.value == "A" then
       site = "armory"
+    elseif self.value == "MHP" then
+      site = "mythicplusshelper"
     elseif self.value == "WH" then
       site = "warcrafthub"
     elseif self.value == "WL" then
@@ -132,6 +138,14 @@ local LFG_LIST_SEARCH_ENTRY_MENU = {
       {
         text = "Armory",
         func = function(_, name) ShowUrl(name,"armory"); end,
+        notCheckable = true,
+        arg1 = nil,
+        disabled = nil,
+        notCheckable = true,
+      },
+      {
+        text = "Mythic Plus Helper",
+        func = function(_, name) ShowUrl(name,"mythicplusshelper"); end,
         notCheckable = true,
         arg1 = nil,
         disabled = nil,
@@ -215,6 +229,7 @@ function LFGListUtil_GetSearchEntryMenu(resultID)
   LFG_LIST_SEARCH_ENTRY_MENU[3].menuList[2].arg1 = leaderName
   LFG_LIST_SEARCH_ENTRY_MENU[3].menuList[3].arg1 = leaderName
   LFG_LIST_SEARCH_ENTRY_MENU[3].menuList[4].arg1 = leaderName
+  LFG_LIST_SEARCH_ENTRY_MENU[3].menuList[5].arg1 = leaderName
   LFG_LIST_SEARCH_ENTRY_MENU[4].menuList[1].arg1 = resultID
   LFG_LIST_SEARCH_ENTRY_MENU[4].menuList[2].arg1 = resultID
   LFG_LIST_SEARCH_ENTRY_MENU[4].menuList[2].disabled = (comment == "")
@@ -246,6 +261,14 @@ local LFG_LIST_APPLICANT_MEMBER_MENU = {
       {
         text = "Armory",
         func = function(_, name) ShowUrl(name,"armory"); end,
+        notCheckable = true,
+        arg1 = nil,
+        disabled = nil,
+        notCheckable = true,
+      },
+      {
+        text = "Mythic Plus Helper",
+        func = function(_, name) ShowUrl(name,"mythicplusshelper"); end,
         notCheckable = true,
         arg1 = nil,
         disabled = nil,
@@ -323,6 +346,7 @@ function LFGListUtil_GetApplicantMemberMenu(applicantID, memberIdx)
   LFG_LIST_APPLICANT_MEMBER_MENU[3].menuList[2].arg1 = name
   LFG_LIST_APPLICANT_MEMBER_MENU[3].menuList[3].arg1 = name
   LFG_LIST_APPLICANT_MEMBER_MENU[3].menuList[4].arg1 = name
+  LFG_LIST_APPLICANT_MEMBER_MENU[3].menuList[5].arg1 = name
   LFG_LIST_APPLICANT_MEMBER_MENU[4].menuList[1].arg1 = applicantID
   LFG_LIST_APPLICANT_MEMBER_MENU[4].menuList[1].arg2 = memberIdx
   LFG_LIST_APPLICANT_MEMBER_MENU[4].menuList[2].arg1 = applicantID

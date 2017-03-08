@@ -6,9 +6,10 @@
 1.5-beta: bug fix
 1.6-beta: bug fix
 1.7-beta: fix for chat context menu
-1.8-beta: handle composite server name
-1.9-beta: fix armory links for servers with a '
-1.10-beta: handle composite russian server name
+1.8-beta: handling of composite server name
+1.9-beta: fix for armory links of servers with a '
+1.10-beta: handling of composite russian server name
 1.11-beta: code cleanup
-1.12-beta: fix links from chat
-1.13-beta: fix Warcraft Logs links for composite server name
+1.12-beta: fix for links from chat
+1.13-beta: fix for Warcraft Logs links of composite server name
+1.14-beta: fix for Warcraft Logs links of composite server name (again), WIP: support for MHP
