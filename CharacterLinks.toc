@@ -1,7 +1,7 @@
 ## Interface: 70100
 ## Title: Character Links
 ## Author: Iokanaan from Archimonde EU
-## Version: 1.12-beta
+## Version: 1.13-beta
 ## Notes: Provides links to Armory, Warcraft Logs, WarcraftHub and WoWProgress
 
 CharacterLinks.lua

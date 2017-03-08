@@ -34,6 +34,8 @@ local function buildLink(name,site)
   serverArmory = server
   server = string.gsub(server, "'", "-")
   server = string.gsub(server, "’", "-")
+  serverWarcraftLogs = server
+  serverWarcraftLogs = string.gsub(serverWarcraftLogs, "-", "")
   if server == nil then
     DEFAULT_CHAT_FRAME:AddMessage("|CFFCC33FFCharacter Links|r: ".."Out of range!");
   else
@@ -43,7 +45,7 @@ local function buildLink(name,site)
     elseif site == "warcrafthub" then
       url = "https://www.warcraftparser.com/character/" .. region .. "/" .. server .. "/" .. char .. "/"
     elseif site == "warcraftlogs" then
-      url = "https://www.warcraftlogs.com/rankings/character_name/" .. char .. "/" .. server .. "/" .. region
+      url = "https://www.warcraftlogs.com/rankings/character_name/" .. char .. "/" .. serverWarcraftLogs .. "/" .. region
     elseif site == "wowprogress" then
       url = "https://www.wowprogress.com/character/" .. region .. "/" .. server .. "/" .. char
     end

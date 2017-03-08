@@ -1,13 +1,14 @@
-1.0-beta : initial release
-1.1-beta : bug fix
-1.2-beta : bug fix
-1.3-beta : bug fix
-1.4-beta : bug fix
-1.5-beta : bug fix
-1.6-beta : bug fix
-1.7-beta : fix for chat context menu
-1.8-beta : handle composite server name
-1.9-beta : fix armory links for servers with a '
-1.10-beta : handle composite russian server name
-1.11-beta : code cleanup
-1.12-beta : fix links from chat
+1.0-beta: initial release
+1.1-beta: bug fix
+1.2-beta: bug fix
+1.3-beta: bug fix
+1.4-beta: bug fix
+1.5-beta: bug fix
+1.6-beta: bug fix
+1.7-beta: fix for chat context menu
+1.8-beta: handle composite server name
+1.9-beta: fix armory links for servers with a '
+1.10-beta: handle composite russian server name
+1.11-beta: code cleanup
+1.12-beta: fix links from chat
+1.13-beta: fix Warcraft Logs links for composite server name
