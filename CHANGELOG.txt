@@ -14,3 +14,4 @@
 1.13-beta: fix for Warcraft Logs links of composite server name
 1.14-beta: fix for Warcraft Logs links of composite server name (again), WIP: support for MHP
 1.15-beta: support for MHP
+1.16-beta: bug fix, code cleanup
