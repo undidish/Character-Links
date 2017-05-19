@@ -16,3 +16,4 @@
 1.15-beta: support for MHP
 1.16-beta: bug fix, code cleanup
 1.17-beta: TOC update for 7.2
+1.18-beta: link to the Warcraft Logs new profile page

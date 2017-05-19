@@ -50,7 +50,7 @@ local function buildLink(name,site)
     local url = ""
     local role = UnitGroupRolesAssigned(char)
     if site == "armory" then
-      url = "https://" .. region .. ".battle.net/wow/en/character/" .. serverArmory .. "/" .. char .. "/advanced"
+      url = "https://" .. region .. ".battle.net/wow/en/character/" .. serverArmory .. "/" .. char .. "/advanced" .. "/"
     elseif site == "mythicplusshelper" then
       url = "{\"region\": \"" .. region .. "\"},\n"
       if IsInRaid() == true then
@@ -65,9 +65,9 @@ local function buildLink(name,site)
     elseif site == "warcrafthub" then
       url = "https://www.warcraftparser.com/character/" .. region .. "/" .. server .. "/" .. char .. "/"
     elseif site == "warcraftlogs" then
-      url = "https://www.warcraftlogs.com/rankings/character_name/" .. char .. "/" .. serverWarcraftLogs .. "/" .. region
+      url = "https://www.warcraftlogs.com/character/" .. region .. "/" .. serverWarcraftLogs .. "/" .. char .. "/"
     elseif site == "wowprogress" then
-      url = "https://www.wowprogress.com/character/" .. region .. "/" .. server .. "/" .. char
+      url = "https://www.wowprogress.com/character/" .. region .. "/" .. server .. "/" .. char .. "/"
     end
     return url
   end
