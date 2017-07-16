@@ -5,8 +5,8 @@
 UnitPopupButtons["CL"]={text = "Character Links", dist = 0, nested = 1,}
 UnitPopupButtons["A"] = {text = "Armory", dist = 0, checkable = nil}
 UnitPopupButtons["MHP"] = {text = "Mythic Plus Helper", dist = 0, checkable = nil}
+UnitPopupButtons["RIO"] = {text = "Raider.IO", dist = 0, checkable = nil}
 UnitPopupButtons["WL"] = {text = "Warcraft Logs", dist = 0, checkable = nil}
-UnitPopupButtons["WH"] = {text = "WarcraftHub", dist = 0, checkable = nil}
 UnitPopupButtons["WP"] = {text = "WoWProgress", dist = 0, checkable = nil}
 table.insert(UnitPopupMenus["SELF"], #(UnitPopupMenus["SELF"])-1, "CL")
 table.insert(UnitPopupMenus["PARTY"], #(UnitPopupMenus["PARTY"])-1, "CL")
@@ -17,7 +17,7 @@ table.insert(UnitPopupMenus["GUILD_OFFLINE"], #(UnitPopupMenus["GUILD_OFFLINE"])
 table.insert(UnitPopupMenus["FRIEND"], #(UnitPopupMenus["FRIEND"])-1, "CL")
 table.insert(UnitPopupMenus["FRIEND_OFFLINE"], #(UnitPopupMenus["FRIEND_OFFLINE"])-1, "CL")
 table.insert(UnitPopupMenus["CHAT_ROSTER"], #(UnitPopupMenus["CHAT_ROSTER"])-1, "CL")
-UnitPopupMenus["CL"] = {"A", "MHP", "WH", "WL", "WP"}
+UnitPopupMenus["CL"] = {"A", "MHP", "RIO", "WL", "WP"}
 
 -- Get current region
 local function getRegion()
@@ -62,8 +62,8 @@ local function buildLink(name,site)
       url = url .. "\"server\": \"" .. FixRealmName(serverMythicPlusHelper) .. "\","
       url = url .. "\"playerType\": \"groupMember\","
       url = url .. "\"role\": \"" .. role .. "\"}\n"
-    elseif site == "warcrafthub" then
-      url = "https://www.warcraftparser.com/character/" .. region .. "/" .. server .. "/" .. char .. "/"
+    elseif site == "raiderio" then
+      url = "https://raider.io/characters/" .. region .. "/" .. server .. "/" .. char .. "/"
     elseif site == "warcraftlogs" then
       url = "https://www.warcraftlogs.com/character/" .. region .. "/" .. serverWarcraftLogs .. "/" .. char .. "/"
     elseif site == "wowprogress" then
@@ -115,8 +115,8 @@ hooksecurefunc("UnitPopup_OnClick", function(self)
       site = "armory"
     elseif self.value == "MHP" then
       site = "mythicplusshelper"
-    elseif self.value == "WH" then
-      site = "warcrafthub"
+    elseif self.value == "RIO" then
+      site = "raiderio"
     elseif self.value == "WL" then
       site = "warcraftlogs"
     elseif self.value == "WP" then
@@ -170,8 +170,8 @@ local LFG_LIST_SEARCH_ENTRY_MENU = {
         notCheckable = true,
       },
       {
-        text = "WarcraftHub",
-        func = function(_, name) ShowUrl(name,"warcrafthub") end,
+        text = "Raider.IO",
+        func = function(_, name) ShowUrl(name,"raiderio") end,
         notCheckable = true,
         arg1 = nil,
         disabled = nil,
@@ -294,8 +294,8 @@ local LFG_LIST_APPLICANT_MEMBER_MENU = {
         notCheckable = true,
       },
       {
-        text = "WarcraftHub",
-        func = function(_, name) ShowUrl(name,"warcrafthub") end,
+        text = "Raider.IO",
+        func = function(_, name) ShowUrl(name,"raiderio") end,
         notCheckable = true,
         arg1 = nil,
         disabled = nil,
