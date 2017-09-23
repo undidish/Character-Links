@@ -1,7 +1,7 @@
-## Interface: 70200
+## Interface: 70300
 ## Title: Character Links
 ## Author: Iokanaan from Archimonde EU
-## Version: 1.20-beta
+## Version: 1.21-beta
 ## Notes: Provides links to Armory, Mythic Plus Helper, Warcraft Logs, WarcraftHub and WoWProgress
 
 CharacterLinks.lua
