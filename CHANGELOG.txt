@@ -19,3 +19,4 @@
 1.18-beta: link to the Warcraft Logs new profile page
 1.19-beta: bump
 1.20-beta: Raider.IO added, WarcraftHub removed (RIP)
+1.21-beta: TOC update for 7.3
