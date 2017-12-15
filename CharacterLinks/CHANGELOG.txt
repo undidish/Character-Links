@@ -20,3 +20,4 @@
 1.19-beta: bump
 1.20-beta: Raider.IO added, WarcraftHub removed (RIP)
 1.21-beta: TOC update for 7.3
+1.3-beta: menu of unit frame disabled because of errors

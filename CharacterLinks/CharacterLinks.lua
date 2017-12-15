@@ -8,10 +8,10 @@ UnitPopupButtons["MHP"] = {text = "Mythic Plus Helper", dist = 0, checkable = ni
 UnitPopupButtons["RIO"] = {text = "Raider.IO", dist = 0, checkable = nil}
 UnitPopupButtons["WL"] = {text = "Warcraft Logs", dist = 0, checkable = nil}
 UnitPopupButtons["WP"] = {text = "WoWProgress", dist = 0, checkable = nil}
-table.insert(UnitPopupMenus["SELF"], #(UnitPopupMenus["SELF"])-1, "CL")
-table.insert(UnitPopupMenus["PARTY"], #(UnitPopupMenus["PARTY"])-1, "CL")
-table.insert(UnitPopupMenus["PLAYER"], #(UnitPopupMenus["PLAYER"])-1, "CL")
-table.insert(UnitPopupMenus["RAID_PLAYER"], #(UnitPopupMenus["RAID_PLAYER"])-1, "CL")
+--table.insert(UnitPopupMenus["SELF"], #(UnitPopupMenus["SELF"])-1, "CL")
+--table.insert(UnitPopupMenus["PARTY"], #(UnitPopupMenus["PARTY"])-1, "CL")
+--table.insert(UnitPopupMenus["PLAYER"], #(UnitPopupMenus["PLAYER"])-1, "CL")
+--table.insert(UnitPopupMenus["RAID_PLAYER"], #(UnitPopupMenus["RAID_PLAYER"])-1, "CL")
 table.insert(UnitPopupMenus["GUILD"], #(UnitPopupMenus["GUILD"])-1, "CL")
 table.insert(UnitPopupMenus["GUILD_OFFLINE"], #(UnitPopupMenus["GUILD_OFFLINE"])-1, "CL")
 table.insert(UnitPopupMenus["FRIEND"], #(UnitPopupMenus["FRIEND"])-1, "CL")
@@ -87,7 +87,7 @@ local function ShowUrl(name,site)
   end
 end
 
--- Menu interaction
+--Menu interaction
 local CURRENT_NAME, CURRENT_SERVER
 
 hooksecurefunc("UnitPopup_ShowMenu", function (dropdownMenu, which, unit, name, userData)
