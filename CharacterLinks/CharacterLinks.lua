@@ -128,7 +128,6 @@ hooksecurefunc("UnitPopup_OnClick", function(self)
     else
       ShowUrl(name,site)
     end
-    CloseDropdownMenus();
   end)
 
 -- LFG tool menu when searching for a group
